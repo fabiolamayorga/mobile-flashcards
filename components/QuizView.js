@@ -23,7 +23,7 @@ class QuizView extends Component {
   }
 
   componentDidMount = () => {
-    const deckId = this.props.navigation.state.params.deckId;
+    const deckId = this.props.navigation.state.params.deck.id;
 
     getDeck(deckId)
     .then((deck)=> this.setState({deck}));
@@ -35,8 +35,6 @@ class QuizView extends Component {
       indexQuestion: prevState.indexQuestion + 1,
       correctAnswers: prevState.correctAnswers + 1,
     }));
-    console.log('index',this.state.indexQuestion);
-    console.log('length',this.state.deck.cards.length);
   }
 
   incorrectAnswer = () => {
@@ -48,7 +46,7 @@ class QuizView extends Component {
 
   render(){
       const index = this.state.indexQuestion;
-      const deck = this.state.deck;
+      const deck = this.state.deck || this.props.navigation.state.params.deck;
       const cards = deck.cards || [];
       const cardsLenght = cards.length || 0;
 

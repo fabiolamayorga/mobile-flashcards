@@ -57,7 +57,11 @@ class DeckListView extends Component {
           <FlatList
             data={decks}
             renderItem={this.renderItem}
+            keyExtractor={(item, index) => index}
             />
+        }
+        {!decks &&
+          <Text style={{fontSize: 20, textAlign: 'center', padding:20}}>No decks, please add a new Deck</Text>
         }
       </View>
     )
